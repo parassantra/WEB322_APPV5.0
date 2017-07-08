@@ -1,4 +1,3 @@
-const dataServiceComments = require("./data-service-comments.js");
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -18,5 +17,5 @@ var contentSchema = new Schema({
      },
 });
 
-let Comment; // to be defined on new connection (see initialize)
+let Comment = mongoose.model("web322_A6", contentSchema); // to be defined on new connection (see initialize)
 
