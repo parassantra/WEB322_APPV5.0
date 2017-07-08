@@ -1,0 +1,51 @@
+{{!--Created by Xiaochen Wang--}}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>WEB322APP</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/css/site.css" type="text/css" >
+    </head>
+    {{!--<body>--}}
+        <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>myApp</h1>
+                </div>
+            </div>
+        </div>
+      </header>
+     <nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class = "pull-left">
+                        <li><a href = "/">&nbsp;Home&nbsp;</a></li>
+                        <li><a href = "/about">&nbsp;About&nbsp;</a></li>
+                    </ul>
+                    <ul class = "pull-right">
+                        <li><a href = "/employees">&nbsp;All&nbsp;Employees&nbsp;</a></li>
+                        <li><a href = "/managers">&nbsp;Managers&nbsp;</a></li>
+                        <li><a href = "/departments">&nbsp;Departments&nbsp;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+   <div class="container">
+       {{{body}}} {{!-- The handlerbars will inject HERE!!!! --}}
+   </div>
+        <footer>
+            <div class="container">
+                <div class = "row">
+                    <div class="col-md-12">
+                        <h2>&#169;2017&nbsp;-&nbsp;Xiaochen&nbsp;Wang</h2>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
