@@ -1,7 +1,7 @@
-# WEB322_APPV4.0 ![Stories in Ready](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)
-WEB322_ASSIGNMENT5
+# WEB322_APPV5.0 ![Stories in Ready](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)
+WEB322_ASSIGNMENT6
 
-Here the **[WEB322_APPV4.0](https://fast-forest-51536.herokuapp.com/)** website deploy on the Heroku.
+Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website deploy on the Heroku.
 :no_entry_sign::no_entry_sign::no_entry_sign:
  # :hand::hand::hand: PLEASE DO NOT COPY. :hand::hand::hand: It is just can be a reference.
  ### because it have my name in my package.json file, also other files. Btw, I change home page css sheet little bits.
