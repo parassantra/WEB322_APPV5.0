@@ -1,5 +1,5 @@
 var gulp = require("gulp");
 
-gulp.task('travis', function(){
+gulp.task('default', function(){
     console.log("Hello World!!!");
 });
