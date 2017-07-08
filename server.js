@@ -17,9 +17,6 @@ var data_service = require("./data-service.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-// Development tasks
-//---------------------------------------------------
-
 var HTTP_PORT = process.env.PORT || 8080;
 
 function onHttpStart() {
