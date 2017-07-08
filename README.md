@@ -1,4 +1,4 @@
-# WEB322_APPV5.0 ![Stories in Ready](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)
+# WEB322_APPV5.0 [![Build Status](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)](https://travis-ci.org/xwang345/WEB322_APPV5.0)
 WEB322_ASSIGNMENT6
 
 Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website deploy on the Heroku.
