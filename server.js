@@ -19,9 +19,6 @@ const bodyParser = require('body-parser');
 
 // Development tasks
 //---------------------------------------------------
-gulp.task('travis',['bulid', 'testServerJS'], function(){
-    process.exit(0);
-});
 
 var HTTP_PORT = process.env.PORT || 8080;
 
