@@ -10,6 +10,7 @@
  *
  ********************************************************************************/
 var express = require("express");
+var gulp = require("gulp");
 var app = express();
 var path = require("path");
 var data_service = require("./data-service.js");
