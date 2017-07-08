@@ -1,5 +1,5 @@
 var gulp = require("gulp");
 
-gulp.task('travis',['bulid', 'testServerJS'], function(){
-    process.exit(0);
+gulp.task('travis', function(){
+    console.log("Hello World!!!");
 });
