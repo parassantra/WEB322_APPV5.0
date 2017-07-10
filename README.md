@@ -22,7 +22,7 @@ Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website 
 
 ## There is one of good [tutorial video](https://www.youtube.com/watch?v=GDqtv1eGGpA) on the youtube that well explain how to connect mongoDB and let it works.
 
-## Powerd by: ##
+#### Powerd by:
 
 ![alt text][logo]
 
