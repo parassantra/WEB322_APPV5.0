@@ -3,7 +3,7 @@ WEB322_ASSIGNMENT6
 
 Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website deploy on the Heroku.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cc-by-nc-sa_icon.svg/1024px-Cc-by-nc-sa_icon.svg.png" width="40%">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cc-by-nc-sa_icon.svg/1024px-Cc-by-nc-sa_icon.svg.png" width="20%">
 
  # :hand::hand::hand: PLEASE DO NOT COPY. :hand::hand::hand: It is just can be a reference.
 
