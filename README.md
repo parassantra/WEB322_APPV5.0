@@ -7,6 +7,20 @@ Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website 
  # :hand::hand::hand: PLEASE DO NOT COPY. :hand::hand::hand: It is just can be a reference.
  ### because it have my name in my package.json file, also other files. Btw, I change home page css sheet little bits.
 
+
+# Connect MongoDB
+###1. Create a new connection to mongolab
+###2. Just select Single Node and Sanbox plan
+###3. Input database name.
+###4. Than, create new connection
+###5. Click on brand new database
+###6. We got warning message that indicate we don't have any user for our db, so u can create one just for the test propouse.
+###7. On the above of our menu, mongolab show us how to connect to remote db, both via shell and URL
+###8 Test the db connection via shell (the fromat like this)
+`mongo ds151752.mlab.com:51752/web322_a6 -u xwang345 -p`
+
+There is one of good [tutorial video on](https://www.youtube.com/watch?v=GDqtv1eGGpA) the youtube that well explain how to connect mongoDB and let it works.
+
 ## Powerd by: ##
 
 ![alt text][logo]
