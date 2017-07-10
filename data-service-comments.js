@@ -21,6 +21,7 @@ var contentSchema = new Schema({
 var Comment; // to be defined on new connection (see initialize)
 
 module.exports.initialize = function () {
+    console.log("+++++++++++++This is initialize fuction+++++++++++++++++++");
     return new Promise(function (resolve, reject) {
         let db = mongoose.createConnection("mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6");
         // let db = mongoose.createConnection("mongodb://localhost:27017");
@@ -35,6 +36,7 @@ module.exports.initialize = function () {
 };
 
 module.exports.addComment = (data) => {
+    console.log("+++++++++++++This is addComment function+++++++++++++++++++");
     data.postedDate = Date.now();
     return new Promise((resolve, reject) => {
         let newComment = new Comment();
@@ -49,6 +51,7 @@ module.exports.addComment = (data) => {
 }
 
 module.exports.getAllComments = () => {
+    console.log("+++++++++++++This is getAllComments function+++++++++++++++++++");
     return new Promise((resolve, reject) => {
     Comment.find({
         postedDate: postedDate
@@ -67,6 +70,7 @@ module.exports.getAllComments = () => {
 }
 
 module.exports.addReply = (data) => {
+    console.log("+++++++++++++This is addReply function+++++++++++++++++++");
     console.log("+++++++++++"+Date.now());
     data.repliedDate = Date.now();
     return new Promise((resolve, reject) => {
