@@ -23,7 +23,7 @@ var HTTP_PORT = process.env.PORT || 8080;
 function onHttpStart() {
     console.log("Express http server listening on: " + HTTP_PORT);
     return new Promise((res, req) => {
-        data_service.initialize().then((data) => {
+        dataServiceComments.initialize().then((data) => {
             console.log(data)
         }).catch((err) => {
             console.log(err);
@@ -213,4 +213,4 @@ app.get("/", (req, res) => {
 //     res.status(404).send("Sorry!!!!!!!>>>Page Not Found! <<<:(");
 // });
 
-// app.listen(HTTP_PORT, onHttpStart);
+app.listen(HTTP_PORT, onHttpStart);
