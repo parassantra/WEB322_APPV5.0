@@ -6,8 +6,6 @@ Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cc-by-nc-sa_icon.svg/1024px-Cc-by-nc-sa_icon.svg.png)
 
  # :hand::hand::hand: PLEASE DO NOT COPY. :hand::hand::hand: It is just can be a reference.
- ### because it have my name in my package.json file,
-
 
 # Connect MongoDB
 1. Create a new connection to mongolab
