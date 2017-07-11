@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 // mongoose.connection.on('connected', function () {
 //   console.log('Mongoose default connection open to ' + dbURI);
 // });
+mongoose.Promise = global.Promise;
 
 var contentSchema = new Schema({
     "authorName": String,
@@ -20,14 +21,19 @@ var contentSchema = new Schema({
 });
 var Comment; // to be defined on new connection (see initialize)
 
+var dbURI = "mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6"
+
 module.exports.initialize = function () {
     console.log("==========================================================");
     console.log("===                                                    ===");
     console.log("===            This is initialize fuction              ===");
     console.log("===                                                    ===");
     console.log("==========================================================");
-    return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection("mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6");
+    console.log("\n")
+    console.log(">>> DB Link:" + dbURI + " <<<");
+    console.log("\n")
+    return new Promise((resolve, reject) => {
+        let db = mongoose.createConnection(dbURI);
         db.on('error', (err) => {
             reject(err); // reject the promise with the provided error
         });
@@ -39,24 +45,24 @@ module.exports.initialize = function () {
 };
 
 module.exports.addComment = (data) => {
-    // console.log(data);
     console.log("==========================================================");
     console.log("===                                                    ===");
     console.log("===          This is addComment function               ===");
     console.log("===                                                    ===");
     console.log("==========================================================");
     data.postedData = Date.now();
-    console.log(data);
+    console.log("/////////"+data[0]);
     return new Promise((resolve, reject) => {
-        let newComment = new Comment();
-        // console.log("/////////"+newComment._id);
+        let newComment = new Comment({data});
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
             } else {
-                console.log(">>>>>>>>>>>> This is newConmment id from addComment fuction in data-service-comments.js: " + newComment._id);
+                console.log("This is newConmment id from addComment fuction in data-service-comments.js:");
+                console.log(">>>>>>>>>>>> " + newComment._id);
                 resolve(newComment._id);
             }
+            console.log(" Object is saving in the database.");
         });
     });
 }
