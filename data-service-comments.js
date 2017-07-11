@@ -30,7 +30,7 @@ module.exports.initialize = function () {
     console.log("===                                                    ===");
     console.log("==========================================================");
     console.log("\n")
-    console.log(">>> DB Link:" + dbURI + " <<<");
+    console.log(">>> DB dbURI: " + dbURI + " <<<");
     console.log("\n")
     return new Promise((resolve, reject) => {
         let db = mongoose.createConnection(dbURI);
