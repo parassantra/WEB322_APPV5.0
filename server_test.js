@@ -43,6 +43,7 @@
 // });
 
 var mongoose = require("mongoose");
+var Promise = require('mpromise');
 var Schema = mongoose.Schema;
 
 let db1 = mongoose.createConnection("mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6");

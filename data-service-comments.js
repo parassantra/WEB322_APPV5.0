@@ -36,18 +36,21 @@ module.exports.initialize = function () {
 };
 
 module.exports.addComment = (data) => {
-    console.log(data);
+    // console.log(data);
     console.log("==========================================================");
     console.log("=+++++++++   This is addComment function   ++++++++++++++=");
     console.log("==========================================================");
-    data.postedDate = Date.now();
+    data.postedData = Date.now();
+    console.log(data);
     return new Promise((resolve, reject) => {
         let newComment = new Comment();
+        // console.log("/////////"+newComment);
         newComment.save((err) => {
             if(err) {
-                reject('There was an error saving the comment: ${err}');
+                reject("There was an error saving the comment: ${err}");
             } else {
-                resolve();
+                console.log("This is newConmment id from addComment fuction in data-service-comments.js: "+newComment._id);
+                resolve(newComment._id);
             }
         });
     });
@@ -58,13 +61,12 @@ module.exports.getAllComments = () => {
     console.log("=+++++++++   This is getAllComments function   ++++++++++=");
     console.log("==========================================================");
     return new Promise((resolve, reject) => {
-    Comment.find({
-        postedDate: postedDate
-        }).exec().then((company) => {
-            if(!company) {
-                console.log("No company could be found");
+    Comment.find({postedData}).exec().then(() => {
+            if(!postedData) {
+                reject();
+                // console.log("No company could be found");
             } else {
-                console.log(company);
+                resolve();
             }
         // exit the program after saving
             process.exit();
@@ -78,11 +80,11 @@ module.exports.addReply = (data) => {
     console.log("==========================================================");
     console.log("=+++++++++   This is addReply function   ++++++++++++++++=");
     console.log("==========================================================");
-    console.log("+++++++++++"+Date.now());
     data.repliedDate = Date.now();
+    console.log(data);
     return new Promise((resolve, reject) => {
-        // if ( data.comment_id) {
-            resolve(Comment.update({ companyName: "The Leftorium"},
+        // if ( data._id == data.comment_id) {
+            resolve(Comment.update({ _id: data.comment_id},
             { $addToSet: { replies: data } },
             { multi: false }).exec());
         // }

@@ -32,6 +32,7 @@ function onHttpStart() {
                 subject: "Comment 1",
                 commentText: "Comment Text 1"
             }).then((id) => {
+                console.log("This is id from initialize fuction in server.js: "+id);
                 dataServiceComments.addReply({
                 comment_id: id,
                 authorName: "Reply 1 Author",
