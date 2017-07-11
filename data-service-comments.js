@@ -100,8 +100,7 @@ module.exports.addReply = (data) => {
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {
             resolve(Comment.update({ _id: data.comment_id},
-            { $addToSet: { replies: data } },
-            { multi: false }).exec());
+            { $addToSet: {replies: data}}).exec());
         // }
     }).catch(() => {
         reject();
