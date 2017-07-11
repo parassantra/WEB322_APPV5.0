@@ -22,7 +22,9 @@ var Comment; // to be defined on new connection (see initialize)
 
 module.exports.initialize = function () {
     console.log("==========================================================");
-    console.log("=+++++++++   This is initialize fuction   +++++++++++++++=");
+    console.log("===                                                    ===");
+    console.log("===            This is initialize fuction              ===");
+    console.log("===                                                    ===");
     console.log("==========================================================");
     return new Promise(function (resolve, reject) {
         let db = mongoose.createConnection("mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6");
@@ -30,7 +32,8 @@ module.exports.initialize = function () {
             reject(err); // reject the promise with the provided error
         });
         db.once('open', () => {
-            resolve(Comment = db.model("contentSchema", contentSchema));
+            Comment = db.model("contentSchema", contentSchema);
+            resolve();
         });
     });
 };
@@ -38,18 +41,20 @@ module.exports.initialize = function () {
 module.exports.addComment = (data) => {
     // console.log(data);
     console.log("==========================================================");
-    console.log("=+++++++++   This is addComment function   ++++++++++++++=");
+    console.log("===                                                    ===");
+    console.log("===          This is addComment function               ===");
+    console.log("===                                                    ===");
     console.log("==========================================================");
     data.postedData = Date.now();
     console.log(data);
     return new Promise((resolve, reject) => {
         let newComment = new Comment();
-        // console.log("/////////"+newComment);
+        // console.log("/////////"+newComment._id);
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
             } else {
-                console.log("This is newConmment id from addComment fuction in data-service-comments.js: "+newComment._id);
+                console.log(">>>>>>>>>>>> This is newConmment id from addComment fuction in data-service-comments.js: " + newComment._id);
                 resolve(newComment._id);
             }
         });
@@ -58,7 +63,9 @@ module.exports.addComment = (data) => {
 
 module.exports.getAllComments = () => {
     console.log("==========================================================");
-    console.log("=+++++++++   This is getAllComments function   ++++++++++=");
+    console.log("===                                                    ===");
+    console.log("===          This is getAllComments function           ===");
+    console.log("===                                                    ===");
     console.log("==========================================================");
     return new Promise((resolve, reject) => {
     Comment.find({postedData}).exec().then(() => {
@@ -78,7 +85,9 @@ module.exports.getAllComments = () => {
 
 module.exports.addReply = (data) => {
     console.log("==========================================================");
-    console.log("=+++++++++   This is addReply function   ++++++++++++++++=");
+    console.log("===                                                    ===");
+    console.log("===         This is addReply function                  ===");
+    console.log("===                                                    ===");
     console.log("==========================================================");
     data.repliedDate = Date.now();
     console.log(data);
