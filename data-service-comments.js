@@ -21,22 +21,25 @@ var contentSchema = new Schema({
 var Comment; // to be defined on new connection (see initialize)
 
 module.exports.initialize = function () {
-    console.log("+++++++++++++This is initialize fuction+++++++++++++++++++");
+    console.log("==========================================================");
+    console.log("=+++++++++   This is initialize fuction   +++++++++++++++=");
+    console.log("==========================================================");
     return new Promise(function (resolve, reject) {
         let db = mongoose.createConnection("mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6");
-        // let db = mongoose.createConnection("mongodb://localhost:27017");
-        db.on('error', (err)=>{
+        db.on('error', (err) => {
             reject(err); // reject the promise with the provided error
         });
-        db.once('open', ()=>{
-            Comment = db.model("web322_A6_contentSchema", contentSchema);
+        db.once('open', () => {
+            Comment = db.model("contentSchema", contentSchema);
             resolve();
         });
     });
 };
 
 module.exports.addComment = (data) => {
-    console.log("+++++++++++++This is addComment function+++++++++++++++++++");
+    console.log("==========================================================");
+    console.log("=+++++++++   This is addComment function   ++++++++++++++=");
+    console.log("==========================================================");
     data.postedDate = Date.now();
     return new Promise((resolve, reject) => {
         let newComment = new Comment();
@@ -51,7 +54,9 @@ module.exports.addComment = (data) => {
 }
 
 module.exports.getAllComments = () => {
-    console.log("+++++++++++++This is getAllComments function+++++++++++++++++++");
+    console.log("==========================================================");
+    console.log("=+++++++++   This is getAllComments function   ++++++++++=");
+    console.log("==========================================================");
     return new Promise((resolve, reject) => {
     Comment.find({
         postedDate: postedDate
@@ -70,13 +75,16 @@ module.exports.getAllComments = () => {
 }
 
 module.exports.addReply = (data) => {
-    console.log("+++++++++++++This is addReply function+++++++++++++++++++");
+    console.log("==========================================================");
+    console.log("=+++++++++   This is addReply function   ++++++++++++++++=");
+    console.log("==========================================================");
     console.log("+++++++++++"+Date.now());
     data.repliedDate = Date.now();
     return new Promise((resolve, reject) => {
         // if ( data.comment_id) {
             resolve(Comment.update({ companyName: "The Leftorium"},
-            { $addToSet: { replies: data } }).exec());
+            { $addToSet: { replies: data } },
+            { multi: false }).exec());
         // }
     }).catch(() => {
         reject();
