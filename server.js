@@ -18,14 +18,14 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 8080;
+var HTTP_PORT = process.env.PORT || 3300;
 
 function onHttpStart() {
-    console.log("=================   System is running   ==================");
-    console.log("===                                                    ===");
-    console.log("===     Express http server listening on: " + HTTP_PORT + "         ===");
-    console.log("===                                                    ===");
-    console.log("==========================================================");
+    console.log("==========    System is running   ==========");
+    console.log("===                                      ===");
+    console.log("== Express http server listening on: " + HTTP_PORT + " ==");
+    console.log("===                                      ===");
+    console.log("============================================");
     return new Promise((res, req) => {
         dataServiceComments.initialize().then(() => {
             dataServiceComments.addComment({
@@ -34,7 +34,7 @@ function onHttpStart() {
                 subject: "Comment 1",
                 commentText: "Comment Text 1"
             }).then((id) => {
-                console.log(">>>>>>>>>>>> This is id from initialize fuction in server.js: "+id);
+                console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
                 dataServiceComments.addReply({
                 comment_id: id,
                 authorName: "Reply 1 Author",

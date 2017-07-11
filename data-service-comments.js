@@ -23,12 +23,12 @@ var Comment; // to be defined on new connection (see initialize)
 
 var dbURI = "mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6"
 
-module.exports.initialize = function () {
-    console.log("==========================================================");
-    console.log("===                                                    ===");
-    console.log("===            This is initialize fuction              ===");
-    console.log("===                                                    ===");
-    console.log("==========================================================");
+module.exports.initialize = () => {
+    console.log("============================================");
+    console.log("===                                      ===");
+    console.log("===  This is initialize function         ===");
+    console.log("===                                      ===");
+    console.log("============================================");
     console.log("\n")
     console.log(">>> DB dbURI: " + dbURI + " <<<");
     console.log("\n")
@@ -45,34 +45,34 @@ module.exports.initialize = function () {
 };
 
 module.exports.addComment = (data) => {
-    console.log("==========================================================");
-    console.log("===                                                    ===");
-    console.log("===          This is addComment function               ===");
-    console.log("===                                                    ===");
-    console.log("==========================================================");
-    data.postedData = Date.now();
-    console.log("/////////"+data[0]);
+    console.log("============================================");
+    console.log("===                                      ===");
+    console.log("===    This is addComment function       ===");
+    console.log("===                                      ===");
+    console.log("============================================");
+    data.postedDate = Date.now();
+    console.log("/////////"+data);
+    
     return new Promise((resolve, reject) => {
         let newComment = new Comment(data);
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
             } else {
-                console.log("This is newConmment id from addComment fuction in data-service-comments.js:");
+                console.log(">>>>>>>>>>>> Object is saving in the database.");
                 console.log(">>>>>>>>>>>> " + newComment._id);
                 resolve(newComment._id);
             }
-            console.log(" Object is saving in the database.");
         });
     });
 }
 
 module.exports.getAllComments = () => {
-    console.log("==========================================================");
-    console.log("===                                                    ===");
-    console.log("===          This is getAllComments function           ===");
-    console.log("===                                                    ===");
-    console.log("==========================================================");
+    console.log("=============================================");
+    console.log("===                                       ===");
+    console.log("===     This is getAllComments function   ===");
+    console.log("===                                       ===");
+    console.log("=============================================");
     return new Promise((resolve, reject) => {
     Comment.find({postedData}).exec().then(() => {
             if(!postedData) {
@@ -90,11 +90,11 @@ module.exports.getAllComments = () => {
 }
 
 module.exports.addReply = (data) => {
-    console.log("==========================================================");
-    console.log("===                                                    ===");
-    console.log("===         This is addReply function                  ===");
-    console.log("===                                                    ===");
-    console.log("==========================================================");
+    console.log("=============================================");
+    console.log("===                                       ===");
+    console.log("===    This is addReply function          ===");
+    console.log("===                                       ===");
+    console.log("=============================================");
     data.repliedDate = Date.now();
     console.log(data);
     return new Promise((resolve, reject) => {
