@@ -32,14 +32,15 @@ function onHttpStart() {
                 authorName: "Comment 1 Author",
                 authorEmail: "comment1@mail.com",
                 subject: "Comment 1",
-                commentText: "Comment Text 1"
+                commentText: "Comment Text 1",
+                versionKey: false
             }).then((id) => {
                 console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
                 dataServiceComments.addReply({
-                comment_id: id,
-                authorName: "Reply 1 Author",
-                authorEmail: "reply1@mail.com",
-                commentText: "Reply Text 1"
+                    comment_id: id,
+                    authorName: "Reply 1 Author",
+                    authorEmail: "reply1@mail.com",
+                    commentText: "Reply Text 1"
                 }).then(dataServiceComments.getAllComments).then((data) => {
                     console.log("comment: " + data[data.length - 1]);
                     process.exit();

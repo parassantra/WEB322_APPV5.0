@@ -17,7 +17,7 @@ var contentSchema = new Schema({
         "authorEmail": String,
         "authorText": String,
         "repliedDate": Date
-     },
+     }
 });
 var Comment; // to be defined on new connection (see initialize)
 
@@ -51,8 +51,6 @@ module.exports.addComment = (data) => {
     console.log("===                                      ===");
     console.log("============================================");
     data.postedDate = Date.now();
-    console.log("/////////"+data);
-    
     return new Promise((resolve, reject) => {
         let newComment = new Comment(data);
         newComment.save((err) => {
@@ -95,6 +93,7 @@ module.exports.addReply = (data) => {
     console.log("===    This is addReply function          ===");
     console.log("===                                       ===");
     console.log("=============================================");
+    data._id = data._id;
     data.repliedDate = Date.now();
     console.log(data);
     return new Promise((resolve, reject) => {
