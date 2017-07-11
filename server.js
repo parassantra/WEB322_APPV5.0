@@ -21,7 +21,9 @@ const bodyParser = require('body-parser');
 var HTTP_PORT = process.env.PORT || 8080;
 
 function onHttpStart() {
-    console.log("Express http server listening on: " + HTTP_PORT);
+    console.log("=================   System is running   ==================");
+    console.log("=+++++   Express http server listening on: " + HTTP_PORT +"   ++++++=");
+    console.log("==========================================================");
     return new Promise((res, req) => {
         dataServiceComments.initialize().then(() => {
             dataServiceComments.addComment({
