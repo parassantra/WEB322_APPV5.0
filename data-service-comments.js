@@ -53,7 +53,7 @@ module.exports.addComment = (data) => {
     data.postedData = Date.now();
     console.log("/////////"+data[0]);
     return new Promise((resolve, reject) => {
-        let newComment = new Comment({data});
+        let newComment = new Comment(data);
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
