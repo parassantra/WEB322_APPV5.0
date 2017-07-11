@@ -30,13 +30,13 @@ module.exports.initialize = function () {
             reject(err); // reject the promise with the provided error
         });
         db.once('open', () => {
-            Comment = db.model("contentSchema", contentSchema);
-            resolve();
+            resolve(Comment = db.model("contentSchema", contentSchema));
         });
     });
 };
 
 module.exports.addComment = (data) => {
+    console.log(data);
     console.log("==========================================================");
     console.log("=+++++++++   This is addComment function   ++++++++++++++=");
     console.log("==========================================================");
@@ -47,7 +47,7 @@ module.exports.addComment = (data) => {
             if(err) {
                 reject('There was an error saving the comment: ${err}');
             } else {
-                resolve(data);
+                resolve();
             }
         });
     });
