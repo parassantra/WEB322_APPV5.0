@@ -13,20 +13,25 @@ var express = require("express");
 var gulp = require("gulp");
 var app = express();
 var path = require("path");
-// var data_service = require("./data-service.js");
+var data_service = require("./data-service.js");
 const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
 var HTTP_PORT = process.env.PORT || 8080;
 
-function onHttpStart() {
+app.listen(HTTP_PORT, function onHttpStart() {
     console.log("==========    System is running   ==========");
     console.log("===                                      ===");
     console.log("== Express http server listening on: " + HTTP_PORT + " ==");
     console.log("===                                      ===");
     console.log("============================================");
     return new Promise((res, req) => {
+        dataService.initialize().then(()=> {
+                console.log("!!!!!!");
+            }).catch(()=> {
+                console.log("unable to start dataService");
+            });
         dataServiceComments.initialize().then(() => {
             dataServiceComments.addComment({
                 authorName: "Comment 1 Author",
@@ -53,7 +58,7 @@ function onHttpStart() {
             console.log(err);
         });
     });
-}
+});
 
 // Load CSS file
 app.use(express.static('public'));
@@ -76,9 +81,6 @@ app.engine(".hbs", exphbs({
 }));
 app.set("view engine", ".hbs");
 
-// alternative method.
-// app.use(express.static(path.join(__dirname, 'public')));
-
 /////////////////////////////////////Get Route //////////////////////////////////
 
 // setup a 'route' to listen on the default url path (http://localhost)
@@ -87,154 +89,176 @@ app.get("/", (req, res) => {
 });
 
 // setup another route to listen on /about
-// app.get("/about", (req, res) => {
-//     res.render("about");
-// });
+app.get("/about", (req, res) => {
+    dataServiceComments.getAllComments().then((data) => {
+        res.render("about", {data: dataFromPromise});
+    }).catch(() => {
+        res.render("about");
+    });
+});
 
-// app.get("/employees", (req, res) => {
-//     if (req.query.status) {
-//         data_service.getEmployeesByStatus(req.query.status).then((data) => {
-//             res.render("employeeList", { data: data, title: "Employees" });
-//         }).catch((err) => {
-//             res.render("employeeList", { data: {}, title: "Employees" });
-//         });
-//     } else if (req.query.department) {
-//         data_service.getEmployeesByDepartment(req.query.department).then((data) => {
-//             res.render("employeeList", { data: data, title: "Employees" });
-//         }).catch((err) => {
-//             res.render("employeeList", { data: {}, title: "Employees" });
-//         });
-//     } else if (req.query.manager) {
-//         data_service.getEmployeesByManager(req.query.manager).then((data) => {
-//             res.render("employeeList", { data: data, title: "Employees" });
-//         }).catch((err) => {
-//             res.render("employeeList", { data: {}, title: "Employees" });
-//         });
-//     } else {
-//         data_service.getAllEmployees().then((data) => {
-//             res.render("employeeList", { data: data, title: "Employees" });
-//         }).catch((err) => {
-//             res.render("employeeList", { data: {}, title: "Employees" });
-//         });
-//     }
-// });
+app.get("/employees", (req, res) => {
+    if (req.query.status) {
+        data_service.getEmployeesByStatus(req.query.status).then((data) => {
+            res.render("employeeList", { data: data, title: "Employees" });
+        }).catch((err) => {
+            res.render("employeeList", { data: {}, title: "Employees" });
+        });
+    } else if (req.query.department) {
+        data_service.getEmployeesByDepartment(req.query.department).then((data) => {
+            res.render("employeeList", { data: data, title: "Employees" });
+        }).catch((err) => {
+            res.render("employeeList", { data: {}, title: "Employees" });
+        });
+    } else if (req.query.manager) {
+        data_service.getEmployeesByManager(req.query.manager).then((data) => {
+            res.render("employeeList", { data: data, title: "Employees" });
+        }).catch((err) => {
+            res.render("employeeList", { data: {}, title: "Employees" });
+        });
+    } else {
+        data_service.getAllEmployees().then((data) => {
+            res.render("employeeList", { data: data, title: "Employees" });
+        }).catch((err) => {
+            res.render("employeeList", { data: {}, title: "Employees" });
+        });
+    }
+});
 
-// app.get("/employee/:empNum", (req, res) => {
-//     // initialize an empty object to store the values
-//     let viewData = {};
-//     data_service.getEmployeeByNum(req.params.empNum).then((data) => {
-//         viewData.data = data; //store employee data in the "viewData" object as "data"
-//     }).catch(() => {
-//         viewData.data = null; // set employee to null if there was an error
-//     }).then(data_service.getDepartments).then((data) => {
-//         viewData.departments = data; // store department data in the "viewData" object as "departments"
-//                                      // loop through viewData.departments and once we have found the departmentId that matches
-//                                      // the employee's "department" value, add a "selected" property to the matching
-//                                      // viewData.departments object
-//         for (let i = 0; i < viewData.departments.length; i++) {
-//             if (viewData.departments[i].departmentId == viewData.data[0].department) {
-//                 viewData.departments[i].selected = true;
-//             }
-//         }
-//         // if not add department set Selected to false and promto a message to user, message like "Please Choose Department" in html.
-//         if (viewData.departments[viewData.departments.length-1].departmentId != viewData.data[0].department) {
-//             viewData.departments.Selected = false;
-//         }
-//     }).catch(() => {
-//         viewData.departments = []; // set departments to empty if there was an error
-//     }).then(() => {
-//         if (viewData.data == null){ // if no employee - return an error
-//             res.status(404).send("Employee Not Found!!!");
-//         } else {
-//             res.render("employee", { viewData: viewData }); // render the "employee" view
-//         }
-//     });
-// });
+app.get("/employee/:empNum", (req, res) => {
+    // initialize an empty object to store the values
+    let viewData = {};
+    data_service.getEmployeeByNum(req.params.empNum).then((data) => {
+        viewData.data = data; //store employee data in the "viewData" object as "data"
+    }).catch(() => {
+        viewData.data = null; // set employee to null if there was an error
+    }).then(data_service.getDepartments).then((data) => {
+        viewData.departments = data; // store department data in the "viewData" object as "departments"
+                                     // loop through viewData.departments and once we have found the departmentId that matches
+                                     // the employee's "department" value, add a "selected" property to the matching
+                                     // viewData.departments object
+        for (let i = 0; i < viewData.departments.length; i++) {
+            if (viewData.departments[i].departmentId == viewData.data[0].department) {
+                viewData.departments[i].selected = true;
+            }
+        }
+        // if not add department set Selected to false and promto a message to user, message like "Please Choose Department" in html.
+        if (viewData.departments[viewData.departments.length-1].departmentId != viewData.data[0].department) {
+            viewData.departments.Selected = false;
+        }
+    }).catch(() => {
+        viewData.departments = []; // set departments to empty if there was an error
+    }).then(() => {
+        if (viewData.data == null){ // if no employee - return an error
+            res.status(404).send("Employee Not Found!!!");
+        } else {
+            res.render("employee", { viewData: viewData }); // render the "employee" view
+        }
+    });
+});
 
-// app.get("/managers", (req, res) => {
-//     data_service.getManagers().then((data) => {
-//         res.render("employeeList", { data: data, title: "Employees (Managers)" });
-//     }).catch((err) => {
-//         res.render("employeeList", { data: {}, title: "Employees (Managers)" });
-//     });
-// });
+app.get("/managers", (req, res) => {
+    data_service.getManagers().then((data) => {
+        res.render("employeeList", { data: data, title: "Employees (Managers)" });
+    }).catch((err) => {
+        res.render("employeeList", { data: {}, title: "Employees (Managers)" });
+    });
+});
 
-// app.get("/departments", (req, res) => {
-//     data_service.getDepartments().then((data) => {
-//         res.render("departmentList", { data: data, title: "Departments" });
-//     }).catch((err) => {
-//         res.render("departmentList", { data: {}, title: "Departments" });
-//     });
-// });
+app.get("/departments", (req, res) => {
+    data_service.getDepartments().then((data) => {
+        res.render("departmentList", { data: data, title: "Departments" });
+    }).catch((err) => {
+        res.render("departmentList", { data: {}, title: "Departments" });
+    });
+});
 
-// app.get("/employees/add", (req, res) => {
-//     data_service.getDepartments().then((data) => {
-//         res.render("addEmployee",{departments: data});
-//     }).catch((err) => {
-//         res.render("addEmployee", {departments: []});
-//     });
-// });
+app.get("/employees/add", (req, res) => {
+    data_service.getDepartments().then((data) => {
+        res.render("addEmployee",{departments: data});
+    }).catch((err) => {
+        res.render("addEmployee", {departments: []});
+    });
+});
 
-// app.get("/departments/add", (req, res) => {
-//     res.render("addDepartment",{title: "Department"});
-// });
+app.get("/departments/add", (req, res) => {
+    res.render("addDepartment",{title: "Department"});
+});
 
-// app.get("/employee/delete/:empNum", (req, res) => {
-//     data_service.deleteEmployeeByNum(req.params.empNum).then((data) => {
-//         res.redirect("/employees");
-//     }).catch((err) => {
-//         res.status(500).send("Unable to Remove Employee / Employee not found");
-//     });
-// });
+app.get("/employee/delete/:empNum", (req, res) => {
+    data_service.deleteEmployeeByNum(req.params.empNum).then((data) => {
+        res.redirect("/employees");
+    }).catch((err) => {
+        res.status(500).send("Unable to Remove Employee / Employee not found");
+    });
+});
 
-// app.get("/department/:departmentId", (req, res) => {
-//     data_service.getDepartmentById(req.params.departmentId).then((data) => {
-//         res.render("department", {
-//            data: data
-//         });
-//     }).catch((err) => {
-//         res.status(404).send("Department Not Found");
-//     });
-// });
+app.get("/department/:departmentId", (req, res) => {
+    data_service.getDepartmentById(req.params.departmentId).then((data) => {
+        res.render("department", {
+           data: data
+        });
+    }).catch((err) => {
+        res.status(404).send("Department Not Found");
+    });
+});
 
-// /////////////////////////////////////Post Route /////////////////////////////////
+/////////////////////////////////////Post Route /////////////////////////////////
 
-// app.post("/employees/add", (req, res) => {
-//     data_service.addEmployee(req.body).then((data) => {
-//         res.redirect("/employees");
-//     }).catch((err) => {
-//         console.log(err);
-//     });
-// });
+app.post("/employees/add", (req, res) => {
+    data_service.addEmployee(req.body).then((data) => {
+        res.redirect("/employees");
+    }).catch((err) => {
+        console.log(err);
+    });
+});
 
-// app.post("/employees/update", (req, res) => {
-//     res.redirect("/employees");
-// });
+app.post("/employees/update", (req, res) => {
+    res.redirect("/employees");
+});
 
-// app.post("/employee/update", (req, res) => {
-//     data_service.updateEmployee(req.body).then((data) => {
-//         res.redirect("/employees");
-//     }).catch((err) => {
-//         console.log(err);
-//     });
-// });
+app.post("/employee/update", (req, res) => {
+    data_service.updateEmployee(req.body).then((data) => {
+        res.redirect("/employees");
+    }).catch((err) => {
+        console.log(err);
+    });
+});
 
-// app.post("/departments/add", (req, res) => {
-//     data_service.addDepartment(req.body).then((data) => {
-//         res.redirect("/departments");
-//     }).catch(() => {
-//         console.log(err);
-//     });
-// });
+app.post("/departments/add", (req, res) => {
+    data_service.addDepartment(req.body).then((data) => {
+        res.redirect("/departments");
+    }).catch(() => {
+        console.log(err);
+    });
+});
 
-// app.post("/department/update", (req,res) => {
-//     data_service.updateDepartment(req.body).then((data) => {
-//         res.redirect("/departments");
-//     });
-// });
+app.post("/department/update", (req,res) => {
+    data_service.updateDepartment(req.body).then((data) => {
+        res.redirect("/departments");
+    });
+});
 
-// app.use((req, res) => {
-//     res.status(404).send("Sorry!!!!!!!>>>Page Not Found! <<<:(");
-// });
+app.use((req, res) => {
+    res.status(404).send("Sorry!!!!!!!>>>Page Not Found! <<<:(");
+});
 
-app.listen(HTTP_PORT, onHttpStart);
+///////////////////////////////////////////////////////////////////
+
+app.post("/about/addComment", (req, res) => {
+    dataServiceComments(req.body).then((data) => {
+        res.redirect("/about");
+    }).catch(() => {
+        res.reject("error to the console");
+        res.redirect("/about");
+    });
+});
+
+app.post("/about/addReply", (req, res) => {
+    dataServiceComments.addReply(req.body).then((data) => {
+        redirect("/about");
+    }).catch(() => {
+        reject("error to the console");
+        redirect("/about");
+    });
+});

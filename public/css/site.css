@@ -67,3 +67,7 @@ table tr td{
     background:transparent;
     text-align: left;
 }
+
+.well .well{
+background-color: white;
+}
