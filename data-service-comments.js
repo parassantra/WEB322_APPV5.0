@@ -1,3 +1,5 @@
+// Created by Xiaochen Wang
+
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
