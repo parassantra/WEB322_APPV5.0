@@ -1,10 +1,7 @@
-/*********************************************************************************
- *  WEB322 –Assignment05
- *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part
- *  of this assignment has been copied manually or electronically from any other source
+/*
  *  (including 3rd party web sites) or distributed to other students.
  *
- *  Name: ___Xiaochen Wang__ Student ID: ___015297153_____ Date: ____23-06-2017__
+ *  Name: ___Xiaochen Wang__ Student ID: ___015297153_____ Date: ____2-06-2017__
  *
  *  Online (Heroku) Link:  https://fast-forest-51536.herokuapp.com/
  *
@@ -18,7 +15,7 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 8080;
+var HTTP_PORT = process.env.PORT || 3000;
 
 app.listen(HTTP_PORT, function onHttpStart() {
     console.log("==========    System is running   ==========");
@@ -27,9 +24,11 @@ app.listen(HTTP_PORT, function onHttpStart() {
     console.log("===                                      ===");
     console.log("============================================");
     return new Promise((res, req) => {
-        dataService.initialize().then(()=> {
-            console.log("!!!!!!");
-            dataServiceComments.initialize().then(() => {
+        data_service.initialize().then(()=> {
+	    console.log("Now can connect to the dataService.js!!!!!!");
+        });
+        dataServiceComments.initialize().then(() => {
+                console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 dataServiceComments.addComment({
                     authorName: "Comment 1 Author",
                     authorEmail: "comment1@mail.com",
@@ -58,8 +57,6 @@ app.listen(HTTP_PORT, function onHttpStart() {
                 console.log("unable to start dataService");
         });
     });
-});
-
 // Load CSS file
 app.use(express.static('public'));
 
@@ -90,8 +87,9 @@ app.get("/", (req, res) => {
 
 // setup another route to listen on /about
 app.get("/about", (req, res) => {
-    dataServiceComments.getAllComments().then((data) => {
-        res.render("about", {data: dataFromPromise});
+    dataServiceComments.getAllComments().then((dataFromPromise) => {
+        res.send(dataFromPromise);
+        // res.render("about", {dataFromPromise: dataFromPromise});
     }).catch(() => {
         res.render("about");
     });

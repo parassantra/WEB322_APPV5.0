@@ -1,5 +1,3 @@
-// Created by Xiaochen Wang
-
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -12,7 +10,6 @@ var contentSchema = new Schema({
     "authorName": String,
     "authorEmail": String,
     "subject": String,
-    "commentText": String,
     "postedDate": Date,
      "replies": {
         "comment_id": String,
@@ -53,7 +50,7 @@ module.exports.addComment = (data) => {
     console.log("===    This is addComment function       ===");
     console.log("===                                      ===");
     console.log("============================================");
-    data.postedDate = Date.now();
+    data.postedDate = Date.now;
     return new Promise((resolve, reject) => {
         let newComment = new Comment(data);
         newComment.save((err) => {
@@ -61,7 +58,7 @@ module.exports.addComment = (data) => {
                 reject("There was an error saving the comment: ${err}");
             } else {
                 console.log(">>>>>>>>>>>> Object is saving in the database.");
-                console.log(">>>>>>>>>>>> Default ID is: " + newComment._id);
+                console.log(">>>>>>>>>>>> " + newComment._id);
                 resolve(newComment._id);
             }
         });
@@ -74,9 +71,17 @@ module.exports.getAllComments = () => {
     console.log("===     This is getAllComments function   ===");
     console.log("===                                       ===");
     console.log("=============================================");
+    // console.log(Comment);
     return new Promise((resolve, reject) => {
-        Comment.find().sort({}).exec().then((newComment) => {
-            resolve(Comment.find());
+    Comment.find({postedDate}).exec().then(() => {
+            if(!postedData) {
+                reject();
+                console.log("No company could be found");
+            } else {
+                resolve();
+            }
+        // exit the program after saving
+            process.exit();
         }).catch((err) => {
             console.log('There was an error: ${err}');
         });
@@ -95,7 +100,8 @@ module.exports.addReply = (data) => {
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {
             resolve(Comment.update({ _id: data.comment_id},
-            { $addToSet: {replies: data}}).exec());
+            { $addToSet: { replies: data } },
+            { multi: false }).exec());
         // }
     }).catch(() => {
         reject();
