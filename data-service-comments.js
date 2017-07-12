@@ -8,6 +8,7 @@ var contentSchema = new Schema({
     "authorEmail": String,
     "subject": String,
     "postedDate": Date,
+    "commentText": String,
      "replies": {
         "comment_id": String,
         "authorName": String,
@@ -47,16 +48,17 @@ module.exports.addComment = (data) => {
     console.log("===    This is addComment function       ===");
     console.log("===                                      ===");
     console.log("============================================");
-    data.postedDate = Date.now;
-    // console.log(data);
+    data.postedDate = Date.now();
     return new Promise((resolve, reject) => {
-        let newComment = new Comment({data});
+        var newComment = new Comment(data);
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
             } else {
-                console.log(">>>>>>>>>>>> Object is saving in the database.");
-                console.log(">>>>>>>>>>>> " + newComment._id);
+                console.log("===   Object is saving in the database.  ===");
+                console.log(data);
+                console.log("============================================");
+                console.log("This is Comment object id from addComent: " + newComment._id);
                 resolve(newComment._id);
             }
         });
@@ -71,7 +73,7 @@ module.exports.getAllComments = () => {
     console.log("=============================================");
     // console.log(Comment);
     return new Promise((resolve, reject) => {
-        console.log(Comment);
+        // console.log(Comment);
     Comment.find().sort().exec().then(() => {
             if(!postedDate) {
                 reject();

@@ -25,17 +25,17 @@ app.listen(HTTP_PORT, function onHttpStart() {
     console.log("============================================");
     return new Promise((res, req) => {
         data_service.initialize().then(()=> {
-	        console.log("Now can connect to the dataService.js!!!!!!");
+            console.log("Now can connect to the dataService.js!!!!!!");
         });
         dataServiceComments.initialize().then(() => {
                 dataServiceComments.addComment({
                     authorName: "Comment 1 Author",
                     authorEmail: "comment1@mail.com",
                     subject: "Comment 1111111111",
-                    commentText: "Comment Text 1",
-                    versionKey: false // You should be aware of the outcome after set to false
+                    commentText: "Comment Text 1"},{
+                        versionKey: false
                     }).then((id) => {
-                        console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
+                        console.log("This is Comment object id from addReply: "+ id);
                         dataServiceComments.addReply({
                         comment_id: id,
                         authorName: "Reply 111111111111111111 Author",
