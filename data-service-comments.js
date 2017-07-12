@@ -59,7 +59,7 @@ module.exports.addComment = (data) => {
                 reject("There was an error saving the comment: ${err}");
             } else {
                 console.log(">>>>>>>>>>>> Object is saving in the database.");
-                console.log(">>>>>>>>>>>> " + newComment._id);
+                console.log(">>>>>>>>>>>> Default ID is: " + newComment._id);
                 resolve(newComment._id);
             }
         });
@@ -73,15 +73,10 @@ module.exports.getAllComments = () => {
     console.log("===                                       ===");
     console.log("=============================================");
     return new Promise((resolve, reject) => {
-    Comment.find({postedData}).exec().then(() => {
-            if(!postedData) {
-                reject();
-                // console.log("No company could be found");
-            } else {
-                resolve();
-            }
-        // exit the program after saving
-            process.exit();
+        Comment.find().sort({}).exec().then((newComment) => {
+            console.log(newComment);
+                resolve(Comment.find());
+
         }).catch((err) => {
             console.log('There was an error: ${err}');
         });

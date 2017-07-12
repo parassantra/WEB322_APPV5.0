@@ -18,7 +18,7 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 3300;
+var HTTP_PORT = process.env.PORT || 8080;
 
 function onHttpStart() {
     console.log("==========    System is running   ==========");
@@ -32,7 +32,8 @@ function onHttpStart() {
                 authorName: "Comment 1 Author",
                 authorEmail: "comment1@mail.com",
                 subject: "Comment 1",
-                commentText: "Comment Text 1"
+                commentText: "Comment Text 1",
+                versionKey: false // You should be aware of the outcome after set to false
                 }).then((id) => {
                 console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
                 dataServiceComments.addReply({
