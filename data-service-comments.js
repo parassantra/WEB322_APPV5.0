@@ -74,9 +74,7 @@ module.exports.getAllComments = () => {
     console.log("=============================================");
     return new Promise((resolve, reject) => {
         Comment.find().sort({}).exec().then((newComment) => {
-            console.log(newComment);
-                resolve(Comment.find());
-
+            resolve(Comment.find());
         }).catch((err) => {
             console.log('There was an error: ${err}');
         });

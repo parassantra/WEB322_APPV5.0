@@ -31,24 +31,24 @@ function onHttpStart() {
             dataServiceComments.addComment({
                 authorName: "Comment 1 Author",
                 authorEmail: "comment1@mail.com",
-                subject: "Comment 1",
+                subject: "Comment 1111111111",
                 commentText: "Comment Text 1",
                 versionKey: false // You should be aware of the outcome after set to false
                 }).then((id) => {
-                console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
-                dataServiceComments.addReply({
-                    comment_id: id,
-                    authorName: "Reply 1 Author",
-                    authorEmail: "reply1@mail.com",
-                    commentText: "Reply Text 1"
-                }).then(dataServiceComments.getAllComments).then((data) => {
-                    console.log("comment: " + data[data.length - 1]);
-                    process.exit();
+                    console.log(">>>>>>>>>>>> This is id from initialize function in server.js: "+ id);
+                    dataServiceComments.addReply({
+                        comment_id: id,
+                        authorName: "Reply 111111111111111111 Author",
+                        authorEmail: "reply1@mail.com",
+                        commentText: "Reply Text 1"
+                    }).then(dataServiceComments.getAllComments).then((data) => {
+                        console.log("comment: " + data[data.length - 1]);
+                        process.exit();
+                    });
                 });
-            });
-        }).catch((err) => {
-            console.log("Error: " + err);
-            process.exit();
+            }).catch((err) => {
+                console.log("Error: " + err);
+                process.exit();
         }).catch((err) => {
             console.log(err);
         });
