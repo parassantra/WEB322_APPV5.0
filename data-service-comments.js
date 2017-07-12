@@ -71,18 +71,9 @@ module.exports.getAllComments = () => {
     console.log("===     This is getAllComments function   ===");
     console.log("===                                       ===");
     console.log("=============================================");
-    // console.log(Comment);
     return new Promise((resolve, reject) => {
-        // console.log(Comment);
-    Comment.find().sort().exec().then(() => {
-            if(!postedDate) {
-                reject();
-                console.log("No company could be found");
-            } else {
-                resolve();
-            }
-        // exit the program after saving
-            // process.exit();
+        Comment.find({}).exec().then((data) => {
+            resolve(data);
         }).catch((err) => {
             console.log('There was an error: ${err}');
         });
@@ -97,6 +88,7 @@ module.exports.addReply = (data) => {
     console.log("=============================================");
     data._id = data._id;
     data.repliedDate = Date.now();
+    console.log("===          addReply messages            ===");
     console.log(data);
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {

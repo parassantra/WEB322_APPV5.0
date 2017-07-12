@@ -15,7 +15,7 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 3000;
+var HTTP_PORT = process.env.PORT || 8080;
 
 app.listen(HTTP_PORT, function onHttpStart() {
     console.log("==========    System is running   ==========");
@@ -43,7 +43,7 @@ app.listen(HTTP_PORT, function onHttpStart() {
                         commentText: "Reply Text 1"
                             }).then(dataServiceComments.getAllComments).then((data) => {
                                 console.log("comment: " + data[data.length - 1]);
-                                process.exit();
+                                // process.exit();
                             });
                         });
                     }).catch((err) => {
