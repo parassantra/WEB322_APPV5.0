@@ -27,8 +27,6 @@ Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website 
 
 [logo]: http://technotip.com/wp-content/uploads/mongoDB/logo-mongodb-tagline.png "Logo Title Text 2"
 
-![alt text][logo]
-
-![alt text] (https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png)
+<img src="https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png">
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png "Logo Title Text 1")
