@@ -25,10 +25,9 @@ app.listen(HTTP_PORT, function onHttpStart() {
     console.log("============================================");
     return new Promise((res, req) => {
         data_service.initialize().then(()=> {
-	    console.log("Now can connect to the dataService.js!!!!!!");
+	        console.log("Now can connect to the dataService.js!!!!!!");
         });
         dataServiceComments.initialize().then(() => {
-                console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 dataServiceComments.addComment({
                     authorName: "Comment 1 Author",
                     authorEmail: "comment1@mail.com",

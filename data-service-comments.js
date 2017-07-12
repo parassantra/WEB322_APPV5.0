@@ -26,7 +26,7 @@ var dbURI = "mongodb://xwang345:Xlxc101302#@ds151752.mlab.com:51752/web322_a6"
 module.exports.initialize = () => {
     console.log("============================================");
     console.log("===                                      ===");
-    console.log("===  This is initialize function         ===");
+    console.log("===           MongoDB initialize         ===");
     console.log("===                                      ===");
     console.log("============================================");
     console.log("\n")
@@ -51,8 +51,9 @@ module.exports.addComment = (data) => {
     console.log("===                                      ===");
     console.log("============================================");
     data.postedDate = Date.now;
+    // console.log(data);
     return new Promise((resolve, reject) => {
-        let newComment = new Comment(data);
+        let newComment = new Comment({data});
         newComment.save((err) => {
             if(err) {
                 reject("There was an error saving the comment: ${err}");
