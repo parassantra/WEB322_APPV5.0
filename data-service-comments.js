@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-// mongoose.connection.on('connected', function () {
-//   console.log('Mongoose default connection open to ' + dbURI);
-// });
 mongoose.Promise = global.Promise;
 
 var contentSchema = new Schema({
@@ -74,15 +71,16 @@ module.exports.getAllComments = () => {
     console.log("=============================================");
     // console.log(Comment);
     return new Promise((resolve, reject) => {
-    Comment.find({postedDate}).exec().then(() => {
-            if(!postedData) {
+        console.log(Comment);
+    Comment.find().sort().exec().then(() => {
+            if(!postedDate) {
                 reject();
                 console.log("No company could be found");
             } else {
                 resolve();
             }
         // exit the program after saving
-            process.exit();
+            // process.exit();
         }).catch((err) => {
             console.log('There was an error: ${err}');
         });
