@@ -71,14 +71,13 @@
                          Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                     </div>
                 </div>
-                {{replies}}
-                {{#each replies}}
-                {{!-- <div class="row">
-                    <div class="col-md-12"> --}}
-                        <div class="well">REPLY {{authorName}} {{authorEmail}}</div>
-                    {{!-- </div>
-                </div> --}}
-                {{/each}}
+                {{!-- {{#each replies}} --}}
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">REPLY {{this.replies}}</div>
+                     </div>
+                </div>
+                {{!-- {{/each}} --}}
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-{{_id}}" aria-expanded="false">Reply</button>

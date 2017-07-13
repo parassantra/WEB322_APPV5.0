@@ -76,7 +76,7 @@ module.exports.getAllComments = () => {
     console.log("===                                       ===");
     console.log("=============================================");
     return new Promise((resolve, reject) => {
-        Comment.find({}).exec().then((data) => {
+        Comment.find().exec().then((data) => {
             resolve(data);
         }).catch((err) => {
             console.log('There was an error: ${err}');
