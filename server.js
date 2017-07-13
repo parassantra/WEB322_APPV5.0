@@ -32,7 +32,7 @@ app.listen(HTTP_PORT, function onHttpStart() {
                     authorName: "Comment 1 Author",
                     authorEmail: "comment1@mail.com",
                     subject: "Comment 1111111111",
-                    commentText: "Comment Text 1"},{
+                    commentText: "Comment Text 1"}, {
                         versionKey: false
                     }).then((id) => {
                         console.log("This is Comment object id from addReply: "+ id);
