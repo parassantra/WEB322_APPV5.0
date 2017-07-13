@@ -1,7 +1,7 @@
 # WEB322_APPV5.0 [![Stories in Ready](https://badge.waffle.io/xwang345/WEB322_APPV5.0.svg?label=ready&title=Ready)](http://waffle.io/xwang345/WEB322_APPV5.0)  [![Build Status](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)](https://travis-ci.org/xwang345/WEB322_APPV5.0) [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 WEB322_ASSIGNMENT6
 
-Here the **[WEB322_APPV5.0](https://fast-forest-51536.herokuapp.com/)** website deploy on the Heroku.
+Here the **[WEB322_APPV5.0](https://cryptic-waters-33866.herokuapp.com/)** website deploy on the Heroku.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/CC-BY_icon.svg/1024px-CC-BY_icon.svg.png" width="20%">
 
