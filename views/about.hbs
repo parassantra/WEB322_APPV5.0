@@ -16,7 +16,7 @@
             <div class="well">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="/about/addComment" method="POST">
+                        <form action="/about/addComment" method="post">
                             <div class="well">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -67,16 +67,16 @@
             <div class="well">
                 <div class="row">
                     <div class="col-md-12">
-                        COMMENT {{@index}}<br /><br />Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
+                         {{subject}}<br /><br />Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                     </div>
                 </div>
                 {{replies}}
                 {{#each replies}}
-                <div class="row">
-                    <div class="col-md-12">
+                {{!-- <div class="row">
+                    <div class="col-md-12"> --}}
                         <div class="well">REPLY {{authorName}} {{authorEmail}}</div>
-                    </div>
-                </div>
+                    {{!-- </div>
+                </div> --}}
                 {{/each}}
                 <div class="row">
                     <div class="col-md-12">

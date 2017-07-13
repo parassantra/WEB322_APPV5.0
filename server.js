@@ -37,25 +37,25 @@ app.listen(HTTP_PORT, function onHttpStart() {
                     }).then((id) => {
                         console.log("This is Comment object id from addReply: "+ id);
                         dataServiceComments.addReply({
-                        comment_id: id,
-                        authorName: "Reply 111111111111111111 Author",
-                        authorEmail: "reply1@mail.com",
-                        commentText: "Reply Text 1"
-                            }).then(dataServiceComments.getAllComments).then((data) => {
-                                console.log("comment: " + data[data.length - 1]);
-                                // process.exit();
-                            });
+                            comment_id: id,
+                            authorName: "Reply 111111111111111111 Author",
+                            authorEmail: "reply1@mail.com",
+                            commentText: "Reply Text 1"
+                        }).then(dataServiceComments.getAllComments).then((data) => {
+                            console.log("comment: " + data[data.length - 1]);
+                            // process.exit();
                         });
-                    }).catch((err) => {
-                        console.log("Error: " + err);
-                        process.exit();
+                    });
                 }).catch((err) => {
-                    console.log(err);
-                });
-            }).catch(()=> {
-                console.log("unable to start dataService");
-        });
+                    console.log("Error: " + err);
+                    process.exit();
+           }).catch((err) => {
+               console.log(err);
+            });
+        }).catch(()=> {
+            console.log("unable to start dataService");
     });
+});
 // Load CSS file
 app.use(express.static('public'));
 
@@ -243,6 +243,7 @@ app.use((req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 app.post("/about/addComment", (req, res) => {
+    // res.send("sadfdsafdsaf");
     dataServiceComments.addComment(req.body).then((data) => {
         res.redirect("/about");
     }).catch(() => {
