@@ -13,7 +13,7 @@ var contentSchema = new Schema({
         "comment_id": String,
         "authorName": String,
         "authorEmail": String,
-        "authorText": String,
+        "commentText": String,
         "repliedDate": Date
      }
 });
@@ -48,6 +48,10 @@ module.exports.addComment = (data) => {
     console.log("===    This is addComment function       ===");
     console.log("===                                      ===");
     console.log("============================================");
+     ({authorName: "Comment 1 Author",
+                    authorEmail: "comment1@mail.com",
+                    subject: "Comment 1111111111",
+                    commentText: "Comment Text 1"})
     data.postedDate = Date.now();
     return new Promise((resolve, reject) => {
         var newComment = new Comment(data);
@@ -86,15 +90,13 @@ module.exports.addReply = (data) => {
     console.log("===    This is addReply function          ===");
     console.log("===                                       ===");
     console.log("=============================================");
-    data._id = data._id;
     data.repliedDate = Date.now();
     console.log("===          addReply messages            ===");
     console.log(data);
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {
             resolve(Comment.update({ _id: data.comment_id},
-            { $addToSet: { replies: data } },
-            { multi: false }).exec());
+            { $addToSet: { replies: data}},{ multi: false }).exec());
         // }
     }).catch(() => {
         reject();

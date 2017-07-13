@@ -40,7 +40,7 @@ app.listen(HTTP_PORT, function onHttpStart() {
                             comment_id: id,
                             authorName: "Reply 111111111111111111 Author",
                             authorEmail: "reply1@mail.com",
-                            commentText: "Reply Text 1"
+                            commentText: "Reply Text 22222222222"
                         }).then(dataServiceComments.getAllComments).then((data) => {
                             console.log("comment: " + data[data.length - 1]);
                             // process.exit();
@@ -243,7 +243,6 @@ app.use((req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 app.post("/about/addComment", (req, res) => {
-    // res.send("sadfdsafdsaf");
     dataServiceComments.addComment(req.body).then((data) => {
         res.redirect("/about");
     }).catch(() => {
