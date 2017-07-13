@@ -87,8 +87,8 @@ app.get("/", (req, res) => {
 // setup another route to listen on /about
 app.get("/about", (req, res) => {
     dataServiceComments.getAllComments().then((dataFromPromise) => {
-        res.send(dataFromPromise);
-        // res.render("about", {dataFromPromise: dataFromPromise});
+        // res.send(dataFromPromise);
+        res.render("about", {data: dataFromPromise});
     }).catch(() => {
         res.render("about");
     });
