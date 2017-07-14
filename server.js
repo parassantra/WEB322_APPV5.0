@@ -15,7 +15,7 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 8080;
+var HTTP_PORT = process.env.PORT || 3000;
 
 app.listen(HTTP_PORT, function onHttpStart() {
     console.log("==========    System is running   ==========");
@@ -25,10 +25,18 @@ app.listen(HTTP_PORT, function onHttpStart() {
     console.log("============================================");
     return new Promise((res, req) => {
         data_service.initialize().then(()=> {
+            console.log("============================================");
             console.log("Now can connect to the dataService.js!!!!!!");
+            console.log("============================================");
+        }).catch((err) => {
+            console.log(err);
         });
         dataServiceComments.initialize().then(() => {
-                console.log("!!!!!!!!!!!!!");
+                console.log("\n");
+                console.log("=====================================================================");
+                console.log(">>> Call initialize Suceess!!! where from data-service-comment.js <<<");
+                console.log("=====================================================================");
+                console.log("\n");
                 // dataServiceComments.addComment({
                 //     authorName: "Comment 1 Author",
                 //     authorEmail: "comment1@mail.com",
@@ -247,10 +255,8 @@ app.post("/about/addComment", (req, res) => {
 });
 
 app.post("/about/addReply", (req, res) => {
-     res.send(req.body);
     dataServiceComments.addReply(req.body).then((data) => {
-        res.send(req.body);
-        // redirect("/about");
+        redirect("/about");
     }).catch((err) => {
         reject("error to the console");
         redirect("/about");

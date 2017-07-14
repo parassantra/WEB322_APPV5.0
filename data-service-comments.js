@@ -93,11 +93,11 @@ module.exports.addReply = (data) => {
     data.repliedDate = Date.now();
     console.log("===          addReply messages            ===");
     console.log(data);
+    console.log("=============================================");
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {
-            Comment.update({ _id: data.comment_id},
-            { $addToSet: { replies: data}},{ multi: false }).exec();
-            resolve(comment_id);
+            resolve(Comment.update({ _id: data.comment_id},
+            { $addToSet: { replies: data}},{ multi: false }).exec());
         // }
     }).catch((err) => {
         reject(err);

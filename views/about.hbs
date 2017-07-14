@@ -1,21 +1,21 @@
  <div class="row">
     <div class="main col-md-12">
-        <article>
-              <h2>Xiaochen Wang - "the developer"</h2>
-                <img src="https://avatars2.githubusercontent.com/u/23272523?v=4&s=460" width="20%" alt="Xiaochem Wang"/>
-                <br />
-                <br />
+        <h2>Xiaochen Wang - "the developer"</h2>
+        <br />
+        <div class="img-container">
+                <img src="https://avatars2.githubusercontent.com/u/23272523?v=4&s=460" alt="Xiaochem Wang" class="image"/>
+                <div class="middle">
+                    <div class="text"><a href="https://github.com/xwang345">Xiaochen‘s GitHub</a></div>
+                </div>
             </div>
+        <article>
+            <br />
             <p>Hi There,</p>
             <p>My name is Xiaochen Wang and I'm currently studying Computer Programming and Analysis at Seneca College of Applied Arts & Technology. My Interests are everything related to HTML, JavaScript and CSS and I'm currently in the process of mastering the MEAN stack. It's my goal to become a full-steak JavaScript developer and continue to lean and expand my experience to include all the amazing new dev tools, enviroments, libraries, workflows and design methodlogies available to the fill-stack / MEAN developer community.</p>
             <p>Enjoy browsing my app! If you have any questios, or are in need of a JS dev for your project, I can be found at [xwang345@myseneca.ca].</p>
             <p>Sincerely,</p>
             <p>Xiaochen Wang</p>
         </article>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
         <h3>Leave a Comment</h3>
             <div class="well">
                 <div class="row">
@@ -50,13 +50,11 @@
                                 </div>
                             </div>
                         </div>
-                     </form>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{{#if data}}
+        {{#if data}}
 <div class="row">
     <div class="col-md-12">
         <h3>All Comments</h3>
@@ -75,7 +73,7 @@
                     Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                 </div>
             </div>
-                 {{!-- {{#each replies}} --}}
+                {{!-- {{#each replies}} --}}
                   <div class="row">
                     <div class="col-md-12">
                         <div class="well">REPLY {{replies}}</div>
@@ -123,3 +121,6 @@
         </div>
     </div>
     {{/each}}
+    </div>
+</div>
+
