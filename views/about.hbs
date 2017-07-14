@@ -73,10 +73,10 @@
                              Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                         </div>
                     </div>
-                 {{#each data}}
+                 {{#each replies}}
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="well">REPLY {{replies}}</div>
+                            <div class="well">REPLY {{@index:authorName}}</div>
                         </div>
                     </div>
                   {{/each}}
