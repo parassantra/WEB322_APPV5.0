@@ -1,7 +1,7 @@
  <div class="row">
     <div class="main col-md-12">
         <article>
-            <h2>Xiaochen Wang - "the developer"</h2>
+              <h2>Xiaochen Wang - "the developer"</h2>
                 <img src="https://avatars2.githubusercontent.com/u/23272523?v=4&s=460" width="20%" alt="Xiaochem Wang"/>
                 <br />
                 <br />
@@ -20,7 +20,7 @@
             <div class="well">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="/about/addComment" method="post">
+                        <form method="post" action="/about/addComment">
                             <div class="well">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -51,30 +51,30 @@
                             </div>
                         </div>
                      </form>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {{#if data}}
-    <div class="row">
-        <div class="col-md-12">
-            <h3>All Comments</h3>
-            <hr />
-        </div>
+</div>
+{{#if data}}
+<div class="row">
+    <div class="col-md-12">
+        <h3>All Comments</h3>
+        <hr />
     </div>
-    {{/if}}
-    {{#each data}}
-    <strong>{{subject}}</strong>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well">
-                <div class="row">
-                    <div class="col-md-12">
-                         {{commentText}}<br /><br />
-                         Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
-                    </div>
+</div>
+{{/if}}
+{{#each data}}
+<strong>{{subject}}</strong>
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    {{commentText}}<br /><br />
+                    Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                 </div>
+            </div>
                  {{!-- {{#each replies}} --}}
                   <div class="row">
                     <div class="col-md-12">
@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             REPLY FORM
-                            <div class="row">
+                            <form method="post" action="/about/addReply"><div class="row">
                                 <div class="col-md-6">
                                     <input class="form-control" placeholder="Name" name="authorName" type="text">
                                     <br>
@@ -103,18 +103,19 @@
                                     <br>
                                 </div>
                             </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
-                                <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+                                    <br>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-10">
-                                <input value="{{_id}}" name="comment_id" type="hidden">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-10">
+                                    <input value="{{_id}}" name="comment_id" type="hidden">
                                     <button type="submit" class="btn btn-primary form-control">Reply</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ module.exports.initialize = () => {
         });
         db.once('open', () => {
             Comment = db.model("contentSchema", contentSchema);
-            resolve();
+            resolve("Secess initialize MongoDB");
         });
     });
 };
@@ -95,8 +95,9 @@ module.exports.addReply = (data) => {
     console.log(data);
     return new Promise((resolve, reject) => {
         // if ( data._id == data.comment_id) {
-            resolve(Comment.update({ _id: data.comment_id},
-            { $addToSet: { replies: data}},{ multi: false }).exec());
+            Comment.update({ _id: data.comment_id},
+            { $addToSet: { replies: data}},{ multi: false }).exec();
+            resolve(data);
         // }
     }).catch(() => {
         reject();

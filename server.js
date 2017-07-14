@@ -28,27 +28,28 @@ app.listen(HTTP_PORT, function onHttpStart() {
             console.log("Now can connect to the dataService.js!!!!!!");
         });
         dataServiceComments.initialize().then(() => {
-                dataServiceComments.addComment({
-                    authorName: "Comment 1 Author",
-                    authorEmail: "comment1@mail.com",
-                    subject: "Comment 1111111111",
-                    commentText: "Comment Text 1"}, {
-                        versionKey: false
-                    }).then((id) => {
-                        console.log("This is Comment object id from addReply: "+ id);
-                        dataServiceComments.addReply({
-                            comment_id: id,
-                            authorName: "Reply 111111111111111111 Author",
-                            authorEmail: "reply1@mail.com",
-                            commentText: "Reply Text 22222222222"
-                        }).then(dataServiceComments.getAllComments).then((data) => {
-                            console.log("comment: " + data[data.length - 1]);
-                            // process.exit();
-                        });
-                    });
-                }).catch((err) => {
-                    console.log("Error: " + err);
-                    process.exit();
+                console.log("!!!!!!!!!!!!!");
+                // dataServiceComments.addComment({
+                //     authorName: "Comment 1 Author",
+                //     authorEmail: "comment1@mail.com",
+                //     subject: "Comment 1111111111",
+                //     commentText: "Comment Text 1"}, {
+                //         versionKey: false
+                //     }).then((id) => {
+                //         console.log("This is Comment object id from addReply: "+ id);
+                //         dataServiceComments.addReply({
+                //             comment_id: id,
+                //             authorName: "Reply 111111111111111111 Author",
+                //             authorEmail: "reply1@mail.com",
+                //             commentText: "Reply Text 22222222222"
+                //         }).then(dataServiceComments.getAllComments).then((data) => {
+                //             console.log("comment: " + data[data.length - 1]);
+                //             // process.exit();
+                //         });
+                //     });
+                // }).catch((err) => {
+                //     console.log("Error: " + err);
+                //     process.exit();
            }).catch((err) => {
                console.log(err);
             });
@@ -236,12 +237,6 @@ app.post("/department/update", (req,res) => {
     });
 });
 
-app.use((req, res) => {
-    res.status(404).send("Sorry!!!!!!!>>>Page Not Found! <<<:(");
-});
-
-///////////////////////////////////////////////////////////////////
-
 app.post("/about/addComment", (req, res) => {
     dataServiceComments.addComment(req.body).then((data) => {
         res.redirect("/about");
@@ -253,9 +248,17 @@ app.post("/about/addComment", (req, res) => {
 
 app.post("/about/addReply", (req, res) => {
     dataServiceComments.addReply(req.body).then((data) => {
+        //res.send(req.body);
         redirect("/about");
     }).catch(() => {
         reject("error to the console");
         redirect("/about");
     });
 });
+
+// error 404 always put last
+app.use((req, res) => {
+    res.status(404).send("Sorry!!!!!!!>>>Page Not Found! <<<:(");
+});
+
+///////////////////////////////////////////////////////////////////
