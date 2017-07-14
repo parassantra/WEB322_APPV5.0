@@ -71,13 +71,13 @@
                          Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
                     </div>
                 </div>
-                {{!-- {{#each replies}} --}}
+                 {{#each replies}}
                   <div class="row">
                     <div class="col-md-12">
-                        <div class="well">REPLY {{this.replies}}</div>
+                        <div class="well">REPLY {{@index}}</div>
                      </div>
                 </div>
-                {{!-- {{/each}} --}}
+                 {{/each}}
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-{{_id}}" aria-expanded="false">Reply</button>
@@ -89,6 +89,28 @@
                     <div class="row">
                         <div class="col-md-12">
                             REPLY FORM
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Name" name="authorName" type="text">
+                                    <br>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Email" name="authorEmail" type="email">
+                                    <br>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <input value="{{_id}}" name="comment_id" type="hidden">
+                                    <button type="submit" class="btn btn-primary form-control">Reply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
