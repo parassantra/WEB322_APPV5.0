@@ -55,38 +55,38 @@
             </div>
         </div>
         {{#if data}}
-<div class="row">
-    <div class="col-md-12">
-        <h3>All Comments</h3>
-        <hr />
-    </div>
-</div>
-{{/if}}
-{{#each data}}
-<strong>{{subject}}</strong>
-<div class="row">
-    <div class="col-md-12">
-        <div class="well">
-            <div class="row">
-                <div class="col-md-12">
-                    {{commentText}}<br /><br />
-                    Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>All Comments</h3>
+                <hr />
             </div>
-                {{!-- {{#each replies}} --}}
-                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="well">REPLY {{replies}}</div>
-                     </div>
-                </div>
-                 {{!-- {{/each}} --}}
-                <div class="row">
-                    <div class="col-md-12">
-                        <button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-{{_id}}" aria-expanded="false">Reply</button>
+        </div>
+        {{/if}}
+        {{#each data}}
+        <strong>{{subject}}</strong>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{commentText}}<br /><br />
+                             Posted on: {{postedDate}} by <a href="mailto:{{authorEmail}}">{{authorName}}</a><br /><br />
+                        </div>
+                    </div>
+                 {{#each replies}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">REPLY {{replies}}</div>
+                        </div>
+                    </div>
+                  {{/each}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-{{_id}}" aria-expanded="false">Reply</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="collapse" id="reply-{{_id}}">
+                <div class="collapse" id="reply-{{_id}}">
                 <div class="well">
                     <div class="row">
                         <div class="col-md-12">
