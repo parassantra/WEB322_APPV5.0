@@ -95,11 +95,12 @@ module.exports.addReply = (data) => {
     console.log(data);
     console.log("=============================================");
     return new Promise((resolve, reject) => {
-        // if ( data._id == data.comment_id) {
-            resolve(Comment.update({ _id: data.comment_id},
-            { $addToSet: { replies: data}},{ multi: false }).exec());
+        // if (_id == data.comment_id) {
+            Comment.update({ _id: data.comment_id},
+            { $addToSet: { replies: data}},{ multi: false }).exec();
+            resolve(data);
         // }
     }).catch((err) => {
-        reject(err);
+        reject("It is error");
     })
 }
