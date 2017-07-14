@@ -247,10 +247,11 @@ app.post("/about/addComment", (req, res) => {
 });
 
 app.post("/about/addReply", (req, res) => {
+     res.send(req.body);
     dataServiceComments.addReply(req.body).then((data) => {
-        //res.send(req.body);
-        redirect("/about");
-    }).catch(() => {
+        res.send(req.body);
+        // redirect("/about");
+    }).catch((err) => {
         reject("error to the console");
         redirect("/about");
     });

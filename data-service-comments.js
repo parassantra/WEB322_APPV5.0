@@ -97,9 +97,9 @@ module.exports.addReply = (data) => {
         // if ( data._id == data.comment_id) {
             Comment.update({ _id: data.comment_id},
             { $addToSet: { replies: data}},{ multi: false }).exec();
-            resolve(data);
+            resolve(comment_id);
         // }
-    }).catch(() => {
-        reject();
+    }).catch((err) => {
+        reject(err);
     })
 }
