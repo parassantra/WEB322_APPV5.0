@@ -17,6 +17,8 @@ Here the **[WEB322_APPV5.0](https://cryptic-waters-33866.herokuapp.com/)** websi
 7. On the above of our menu, mongolab show us how to connect to remote db, both via shell and URL
 8. Test the db connection via shell (the fromat like this)
 
+## handlebars 遍历一个二维表,比如象mongodb中取出来的数据: [link]  (http://cnodejs.org/topic/50d08106637ffa4155b2c5cc)
+
 `mongo ds151752.mlab.com:51752/web322_a6 -u xwang345 -p`
 
 ## There is one of good [tutorial video](https://www.youtube.com/watch?v=GDqtv1eGGpA) on the youtube that well explain how to connect mongoDB and let it works.
