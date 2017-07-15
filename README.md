@@ -64,23 +64,23 @@ Handlebars的安装是比较简单和方便的;handlebars是一个纯JS库，因
 
     模板结构
 
-    <script id="tpl" type="text/x-handlebars-template">  
-    <div class="demo">  
+    <script id="tpl" type="text/x-handlebars-template">
+    <div class="demo">
     <h1>{{name}}</h1>
     <p>{{content}}</p>
     </div>
-    </script>  
+    </script>
 
 Handlebar的表达式
 block
 
 有时候当你需要对某条表达式进行更深入的操作时，Blocks就派上用场了，在Handlebars中，你可以在表达式后面跟随一个#号来表示Blocks，然后通过{{/表达式}}来结束Blocks。 如果当前的表达式是一个数组，则Handlebars会“自动展开数组”，并将Blocks的上下文设为数组中的元素。
 ``
-<ul>  
+<ul>
 {{#arr_data}}
     <li>{{language}}</li>
 {{/arr_data}}
-</ul>  
+</ul>
 ``
 以下为json数据
 
@@ -153,8 +153,8 @@ Handlebar支持路径访问,Handlebar还支持嵌套的路径，使得能够查�
 遍历可以算是一个最常用的功能，对于很多数据的展示都是需要用到each的。Handlebar的遍历对于数组和对象都适用。
 
 #模板
-{{#each this}} 
-  <p>{{this.name}}:{{this.age}}</p> 
+{{#each this}}
+  <p>{{this.name}}:{{this.age}}</p>
 {{else}}
   <p>no data</p>
 {{/each}}

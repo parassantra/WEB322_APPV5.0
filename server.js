@@ -15,7 +15,7 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
-var HTTP_PORT = process.env.PORT || 3000;
+var HTTP_PORT = process.env.PORT || 8080;
 
 app.listen(HTTP_PORT, function onHttpStart() {
     console.log("==========    System is running   ==========");
