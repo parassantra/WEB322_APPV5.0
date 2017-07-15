@@ -10,6 +10,7 @@ var contentSchema = new Schema({
     "postedDate": Date,
     "commentText": String,
      "replies": {
+         "_id": String,
         "comment_id": String,
         "authorName": String,
         "authorEmail": String,
@@ -48,10 +49,6 @@ module.exports.addComment = (data) => {
     console.log("===    This is addComment function       ===");
     console.log("===                                      ===");
     console.log("============================================");
-     ({authorName: "Comment 1 Author",
-                    authorEmail: "comment1@mail.com",
-                    subject: "Comment 1111111111",
-                    commentText: "Comment Text 1"})
     data.postedDate = Date.now();
     return new Promise((resolve, reject) => {
         var newComment = new Comment(data);
@@ -76,7 +73,7 @@ module.exports.getAllComments = () => {
     console.log("===                                       ===");
     console.log("=============================================");
     return new Promise((resolve, reject) => {
-        Comment.find().exec().then((data) => {
+        Comment.find().sort({postedDate:1}).exec().then((data) => {
             resolve(data);
         }).catch((err) => {
             console.log('There was an error: ${err}');
@@ -95,11 +92,11 @@ module.exports.addReply = (data) => {
     console.log(data);
     console.log("=============================================");
     return new Promise((resolve, reject) => {
-        // if (_id == data.comment_id) {
+        if (data._id == data.comment_id) {
             Comment.update({ _id: data.comment_id},
             { $addToSet: { replies: data}},{ multi: false }).exec();
             resolve(data);
-        // }
+        }
     }).catch((err) => {
         reject("It is error");
     })

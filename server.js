@@ -256,10 +256,9 @@ app.post("/about/addComment", (req, res) => {
 
 app.post("/about/addReply", (req, res) => {
     dataServiceComments.addReply(req.body).then((data) => {
-        //res.send(data);
         res.redirect("/about");
     }).catch((err) => {
-        // reject("error to the console");
+        reject("error to the console");
         redirect("/about");
     });
 });
