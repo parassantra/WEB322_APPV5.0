@@ -72,7 +72,7 @@ module.exports.initialize = () => {
         });
         reject();
     });
-}
+};
 
 module.exports.getAllEmployees = () => {
     console.log("============================================");
@@ -87,7 +87,7 @@ module.exports.getAllEmployees = () => {
             reject("no results returned.");
         });
     });
-}
+};
 
 module.exports.getEmployeesByStatus = (status) => {
     console.log("============================================");
@@ -105,7 +105,7 @@ module.exports.getEmployeesByStatus = (status) => {
             reject("no results returned.");
         });
     });
-}
+};
 
 module.exports.getEmployeesByDepartment = (department) => {
     console.log("============================================");
@@ -123,7 +123,7 @@ module.exports.getEmployeesByDepartment = (department) => {
             reject("no results returned.");
         });
     });
-}
+};
 
 module.exports.getEmployeesByManager = (manager) => {
     console.log("============================================");
@@ -142,7 +142,7 @@ module.exports.getEmployeesByManager = (manager) => {
                 reject("no results returned.");
         });
     });
-}
+};
 
 module.exports.getEmployeeByNum = (num) => {
     console.log("============================================");
@@ -180,7 +180,7 @@ module.exports.getManagers = () => {
             reject("no results returned.")
         });
     });
-}
+};
 
 module.exports.getDepartments = () => {
     console.log("============================================");
@@ -195,7 +195,7 @@ module.exports.getDepartments = () => {
             reject("no results returned.");
         });
     });
-}
+};
 
 module.exports.addEmployee = (employeeData) => {
     console.log("============================================");
@@ -232,7 +232,7 @@ module.exports.addEmployee = (employeeData) => {
         }).catch(() => {
             reject("unable to create employee.");
     });
-}
+};
 
 module.exports.updateEmployee = (employeeData) => {
     console.log("============================================");
@@ -267,7 +267,7 @@ module.exports.updateEmployee = (employeeData) => {
             reject("unable to create employee.");
         });
     });
-}
+};
 
 module.exports.addDepartment = (departmentData) => {
     console.log("============================================");
@@ -294,7 +294,7 @@ module.exports.addDepartment = (departmentData) => {
             reject("unable to create department.");
         });
     });
-}
+};
 
 module.exports.updateDepartment = (departmentData) => {
     console.log("============================================");
@@ -322,7 +322,7 @@ module.exports.updateDepartment = (departmentData) => {
             reject("unable to create department.");
         });
     });
-}
+};
 
 module.exports.getDepartmentById = (id) => {
     console.log("============================================");
@@ -340,7 +340,7 @@ module.exports.getDepartmentById = (id) => {
             reject("unable to find department");
         });
     });
-}
+};
 
 module.exports.deleteEmployeeByNum = (empNum) =>{
     console.log("============================================");
@@ -358,4 +358,4 @@ module.exports.deleteEmployeeByNum = (empNum) =>{
             reject();
         });
     });
-}
+};

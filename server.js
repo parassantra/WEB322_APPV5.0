@@ -37,27 +37,6 @@ app.listen(HTTP_PORT, function onHttpStart() {
                 console.log(">>> Call initialize Suceess!!! where from data-service-comment.js <<<");
                 console.log("=====================================================================");
                 console.log("\n");
-                // dataServiceComments.addComment({
-                //     authorName: "Comment 1 Author",
-                //     authorEmail: "comment1@mail.com",
-                //     subject: "Comment 1111111111",
-                //     commentText: "Comment Text 1"}, {
-                //         versionKey: false
-                //     }).then((id) => {
-                //         console.log("This is Comment object id from addReply: "+ id);
-                //         dataServiceComments.addReply({
-                //             comment_id: id,
-                //             authorName: "Reply 111111111111111111 Author",
-                //             authorEmail: "reply1@mail.com",
-                //             commentText: "Reply Text 22222222222"
-                //         }).then(dataServiceComments.getAllComments).then((data) => {
-                //             console.log("comment: " + data[data.length - 1]);
-                //             // process.exit();
-                //         });
-                //     });
-                // }).catch((err) => {
-                //     console.log("Error: " + err);
-                //     process.exit();
            }).catch((err) => {
                console.log(err);
             });

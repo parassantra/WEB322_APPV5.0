@@ -64,7 +64,7 @@ module.exports.addComment = (data) => {
             }
         });
     });
-}
+};
 
 module.exports.getAllComments = () => {
     console.log("=============================================");
@@ -79,7 +79,7 @@ module.exports.getAllComments = () => {
             console.log('There was an error: ${err}');
         });
     });
-}
+};
 
 module.exports.addReply = (data) => {
     console.log("=============================================");
@@ -99,5 +99,5 @@ module.exports.addReply = (data) => {
         }
     }).catch((err) => {
         reject("It is error");
-    })
-}
+    });
+};
